@@ -10,7 +10,7 @@ Plugin-Class: org.eclipse.emf.compare.ui.EMFCompareUIPlugin
 Require-Bundle: org.eclipse.compare,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
- org.eclipse.emf.compare,
+ org.eclipse.emf.compare;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.emf.compare.diff,
  org.eclipse.emf.compare.match,
  org.eclipse.emf.ecore.editor,

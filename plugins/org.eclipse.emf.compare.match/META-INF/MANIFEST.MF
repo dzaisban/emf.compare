@@ -24,7 +24,7 @@ Export-Package: org.eclipse.emf.compare.match,
  org.eclipse.emf.compare.match.service,
  org.eclipse.emf.compare.match.statistic
 Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
- org.eclipse.emf.compare,
+ org.eclipse.emf.compare;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit
