@@ -7,20 +7,16 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
- *     Atos -Arthur Daussy  - extensible ItemProviderAdapterFactory
  *******************************************************************************/
 package org.eclipse.emf.compare;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.emf.compare.internal.RegisteredItemProviderAdapterFactoryListener;
-import org.eclipse.emf.compare.internal.RegisteredItemProviderAdapterFactoryRegistry;
 import org.eclipse.emf.compare.util.EMFComparePreferenceConstants;
 import org.osgi.framework.BundleContext;
 
@@ -32,11 +28,6 @@ import org.osgi.framework.BundleContext;
 public class EMFComparePlugin extends Plugin {
 	/** The plugin ID. */
 	public static final String PLUGIN_ID = "org.eclipse.emf.compare"; //$NON-NLS-1$
-
-	/**
-	 * Listener for {@link RegisteredItemProviderAdapterFactoryRegistry}.
-	 */
-	private static RegisteredItemProviderAdapterFactoryListener registeredItemProviderAdapterListener = new RegisteredItemProviderAdapterFactoryListener();
 
 	/** Plug-in's shared instance. */
 	private static EMFComparePlugin plugin;
@@ -172,13 +163,6 @@ public class EMFComparePlugin extends Plugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-
-		final IExtensionRegistry registry = Platform.getExtensionRegistry();
-		registry.addListener(registeredItemProviderAdapterListener,
-				RegisteredItemProviderAdapterFactoryRegistry.EXT_POINT_ID_ADAPTER_FACTORY);
-
-		RegisteredItemProviderAdapterFactoryRegistry.parseInitialContributions();
-
 		initializeDefaultPreferences();
 	}
 
@@ -190,12 +174,6 @@ public class EMFComparePlugin extends Plugin {
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
-
-		final IExtensionRegistry registry = Platform.getExtensionRegistry();
-		registry.removeListener(registeredItemProviderAdapterListener);
-
-		RegisteredItemProviderAdapterFactoryRegistry.clearRegistry();
-
 		super.stop(context);
 	}
 
