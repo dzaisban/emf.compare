@@ -1021,13 +1021,6 @@ public class ReferencesCheck extends AbstractCheck {
 
 		EObject leftTarget = getMatchManager().getMatchedEObject(deletedValue);
 		EObject rightTarget = getMatchManager().getMatchedEObject(addedValue);
-		// checks if target are defined remotely
-		if (leftTarget == null && deletedValue != null) {
-			leftTarget = deletedValue;
-		}
-		if (rightTarget == null && addedValue != null) {
-			rightTarget = addedValue;
-		}
 
 		operation.setLeftTarget(leftTarget);
 		operation.setRightTarget(rightTarget);
