@@ -1022,4 +1022,11 @@ public class GenericDiffEngine implements IDiffEngine2 {
 	private DiffGroup findExistingGroup(DiffGroup root, EObject targetParent) {
 		return diffGroups.get(targetParent);
 	}
+
+	public IMatchManager getMatchManager(MatchModel match) {
+		if (matchManager == null) {
+			return new CrossReferencerMatchManager(new MatchCrossReferencer(match));
+		}
+		return matchManager;
+	}
 }
